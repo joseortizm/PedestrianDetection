@@ -1,3 +1,4 @@
+#conda environment: arch
 import cv2 as cv
 #check opencv#
 #img = cv.imread("test.png")
@@ -6,7 +7,9 @@ import cv2 as cv
 ###
 
 #video = cv.VideoCapture('../datasets/PedestrianDetection/PedestriansCompilation.mp4') #path of video
-video = cv.VideoCapture('../datasets/PedestrianDetection/Pedestrians.mp4') #path of video
+#video = cv.VideoCapture('../datasets/PedestrianDetection/Pedestrians.mp4') #path of video
+video = cv.VideoCapture('../datasets/PedestrianDetection/PedestriansDetection.mp4') #path of video
+pedestrianFile = 'haarcascade_fullbody.xml'
 pedestrianFile = 'haarcascade_fullbody.xml'
 pedestrianTracker = cv.CascadeClassifier(pedestrianFile)
 
@@ -22,7 +25,7 @@ while video.isOpened():
     pedestrians = pedestrianTracker.detectMultiScale(gray)
 
     for(x, y, w, h) in pedestrians:
-        cv.rectangle(frame, (x, y), (x+w, y+h), (255, 160, 122), 2)
+        cv.rectangle(frame, (x, y), (x+w, y+h), (0, 0, 255), 5) #BGR
 
     cv.imshow('myVideo', frame)
     if cv.waitKey(25) == ord('q'):
